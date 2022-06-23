@@ -1,21 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:mitesh10firebase/Authentication/Auth.dart';
 
-class LoginSCreen extends StatefulWidget {
-  const LoginSCreen({Key? key}) : super(key: key);
+class Signup extends StatefulWidget {
+  const Signup({Key? key}) : super(key: key);
 
   @override
-  State<LoginSCreen> createState() => _LoginSCreenState();
+  State<Signup> createState() => _SignupState();
 }
 
-class _LoginSCreenState extends State<LoginSCreen> {
+class _SignupState extends State<Signup> {
+
   TextEditingController txt_email=TextEditingController();
-  TextEditingController txt_password=TextEditingController();
+  TextEditingController txt_pasword=TextEditingController();
+
+  Auth a1=Auth();
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
+        return SafeArea(
       child: Scaffold(
-
         body: Padding(
           padding: const EdgeInsets.all(22),
           child: Column(
@@ -24,12 +26,12 @@ class _LoginSCreenState extends State<LoginSCreen> {
               TextField(
                 controller: txt_email,
                 decoration: InputDecoration(
-                  prefixIcon: Icon(Icons.email,color: Colors.red,),
-                  label: Text("Email",style: TextStyle(color: Colors.black),)
+                    prefixIcon: Icon(Icons.email,color: Colors.red,),
+                    label: Text("Email",style: TextStyle(color: Colors.black),)
                 ),
               ),
               TextField(
-                controller: txt_password,
+                controller: txt_pasword,
                 decoration: InputDecoration(
                     prefixIcon: Icon(Icons.lock,color: Colors.red,),
                     label: Text("Password",style: TextStyle(color: Colors.black),)
@@ -38,15 +40,16 @@ class _LoginSCreenState extends State<LoginSCreen> {
               SizedBox(height: 20,),
               GestureDetector(
                 onTap: (){
-                  Auth().Login(txt_email.text,txt_password.text,context);
-                    Navigator.pushNamed(context, '/home');
+                Auth a1=Auth();
+                a1.SignUp(txt_email.text, txt_pasword.text);
+
                 },
                 child: Container(
                   height: 50,
                   width: double.infinity,
                   decoration: BoxDecoration(color: Colors.pinkAccent
                       ,borderRadius: BorderRadius.circular(20)),
-                  child: Center(child: Text("Login",style: TextStyle(color: Colors.white),)),
+                  child: Center(child: Text("Sign Up",style: TextStyle(color: Colors.white),)),
                 ),
               ),
               SizedBox(height: 20,),
@@ -55,8 +58,8 @@ class _LoginSCreenState extends State<LoginSCreen> {
                 children: [
                   Text("Dont have an Account?",style: TextStyle(color: Colors.black),),
                   TextButton(onPressed: (){
-                        Navigator.pushNamed(context, '/signup');
-                  }, child:Text ("Sign Up",style: TextStyle(color: Colors.red),),),
+
+                  }, child:Text ("Login",style: TextStyle(color: Colors.red),),),
                 ],
               ),
             ],
