@@ -1,7 +1,9 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:mitesh10firebase/Authentication/Auth.dart';
 import 'package:mitesh10firebase/Screen/Login%20Page.dart';
+import 'package:mitesh10firebase/Screen/homepage.dart';
 
 class SpleshScreen extends StatefulWidget {
   const SpleshScreen({Key? key}) : super(key: key);
@@ -22,6 +24,7 @@ class _SpleshScreenState extends State<SpleshScreen> {
         ),
       ),
     );
+    Check(context);
     return SafeArea(
       child: Scaffold(
         body: Container(
@@ -48,5 +51,20 @@ class _SpleshScreenState extends State<SpleshScreen> {
         ),
       ),
     );
+  }
+}
+void Check(BuildContext context) {
+  if (Auth().CurrentUser(context) == true) {
+    Timer(Duration(seconds: 3), () {
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (C) {
+        return HomePage();
+      }));
+    });
+  } else {
+    Timer(Duration(seconds: 3), () {
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (C) {
+        return LoginSCreen();
+      }));
+    });
   }
 }
